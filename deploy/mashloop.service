@@ -1,0 +1,38 @@
+[Unit]
+Description=Mash ∞ Loop (hosted, one library per visit)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/root/truc_ai/mashloop
+# Listens on loopback only: the outside reaches it through HAProxy (443).
+Environment=MASHLOOP_HOST=127.0.0.1
+Environment=MASHLOOP_PORT=18765
+Environment=MASHLOOP_MULTIUSER=1
+Environment=MASHLOOP_DATA=/root/truc_ai/mashloop/data
+# Songs analysed at once (each worker holds ~0.8 GB of GPU memory) and linking processes.
+Environment=MASHLOOP_ANALYSIS_WORKERS=3
+Environment=MASHLOOP_LINK_WORKERS=3
+Environment=MASHLOOP_WORKER_THREADS=3
+# The disk is shared and nearly full: the song store keeps at most this much.
+Environment=MASHLOOP_MAX_STORE_GB=20
+Environment=MASHLOOP_MAX_DURATION_S=720
+# Songs one visit may add (the sample library does not count), upload size.
+Environment=MASHLOOP_MAX_SESSION_TRACKS=10
+Environment=MASHLOOP_MAX_PLAYLIST=10
+Environment=MASHLOOP_MAX_UPLOAD_MB=200
+Environment=HOME=/root
+Environment=MASHLOOP_JS_RUNTIME=deno
+Environment=PATH=/root/truc_ai/mashloop/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/root/truc_ai/mashloop/.venv/bin/python -m loopbox.server
+Restart=always
+RestartSec=3
+# Stopped at once: every file is written under a temporary name and renamed,
+# unfinished analyses are queued again on start, and sessions live in memory
+# anyway, so a graceful stop buys nothing (it took the full 90 s timeout).
+KillSignal=SIGKILL
+# Worker processes share the GPU with other services; keep them nice.
+Nice=5
+
+[Install]
+WantedBy=multi-user.target

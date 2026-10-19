@@ -1,0 +1,28 @@
+# Install into a venv created with --system-site-packages when torch with CUDA is
+# already installed system-wide; otherwise install torch/torchaudio first from
+# https://pytorch.org for your CUDA version.
+#   python -m venv .venv --system-site-packages
+#   .venv\Scripts\python -m pip install --no-deps beat-this demucs
+#   .venv\Scripts\python -m pip install -c constraints.txt -r requirements.txt
+torch
+torchaudio
+numpy
+scipy
+librosa
+soundfile
+soxr
+einops
+rotary-embedding-torch
+julius
+lameenc
+pyyaml
+huggingface-hub
+safetensors
+sphn
+tqdm
+fastapi
+uvicorn
+pydantic
+yt-dlp[default]
+# test only
+playwright

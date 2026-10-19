@@ -1,0 +1,12 @@
+[
+  {"name": "play-hover", "width": 1440, "do": [{"hover": "#btn-play"}, {"wait": 250}], "shot": ".deck"},
+  {"name": "play-pressed", "width": 1440, "do": [{"hold": "#btn-play"}], "shot": ".deck"},
+  {"name": "focus-ring", "width": 1440, "do": [{"press": "Tab"}, {"press": "Tab"}, {"press": "Tab"}, {"wait": 200}], "shot": "viewport"},
+  {"name": "mode-single", "width": 1440, "do": [{"click": ".mode button[data-mode=single]"}, {"wait": 500}], "shot": ".topbar"},
+  {"name": "tab-settings", "width": 1440, "do": [{"click": ".tabs button[data-tab=settings]"}, {"wait": 500}], "shot": ".panel"},
+  {"name": "search-focus", "width": 1440, "do": [{"focus": "#add-input"}, {"type": ["#add-input", "Đặt cọc giữ máy Ữ Ỗ Ặ Ẫ"]}], "shot": ".add"},
+  {"name": "track-hover", "width": 1440, "do": [{"hover": "#track-list .track"}, {"wait": 1300}], "shot": "#track-list"},
+  {"name": "playing", "width": 1440, "do": [{"click": "#btn-play"}, {"wait": 4000}], "shot": "viewport"},
+  {"name": "playing-375", "width": 375, "do": [{"click": "#btn-play"}, {"wait": 4000}], "shot": "viewport"},
+  {"name": "settings-375", "width": 375, "do": [{"click": ".tabs button[data-tab=settings]"}, {"scroll": ".tabs"}, {"wait": 500}], "shot": "viewport"}
+]

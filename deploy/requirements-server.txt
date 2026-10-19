@@ -1,0 +1,20 @@
+# Server install, after torch (see setup.sh). beat-this and demucs go in with
+# --no-deps: their pinned dependencies would replace the CUDA build of torch.
+numpy
+scipy
+librosa
+soundfile
+soxr
+einops
+rotary-embedding-torch
+julius
+lameenc
+pyyaml
+huggingface-hub
+safetensors
+sphn
+tqdm
+fastapi
+uvicorn
+pydantic
+yt-dlp[default]
